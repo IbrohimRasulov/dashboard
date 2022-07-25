@@ -1,0 +1,2363 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Online School</title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<meta http-equiv="Cache-control" content="no-cache">
+	<meta name="theme-color" content="#424242" />
+	<link href="uploads/school_content/admin_small_logo/1.png" rel="shortcut icon" type="image/x-icon">
+
+	<link rel="stylesheet" href="backend/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="backend/dist/css/jquery.mCustomScrollbar.min.css">
+	<link rel="stylesheet" href="backend/dist/css/style-main.css">
+	<link rel="stylesheet" href="backend/dist/themes/default/skins/_all-skins.min.css">
+	<link rel="stylesheet" href="backend/dist/themes/default/ss-main.css">
+
+
+	<link rel="stylesheet" href="backend/dist/css/font-awesome.min.css">
+	<link rel="stylesheet" href="backend/dist/css/ionicons.min.css">
+	<link rel="stylesheet" href="backend/plugins/iCheck/flat/blue.css">
+	<link rel="stylesheet" href="backend/plugins/morris/morris.css">
+	<link rel="stylesheet" href="backend/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+	<link rel="stylesheet" href="backend/plugins/datepicker/datepicker3.css">
+	<link rel="stylesheet" href="backend/plugins/colorpicker/bootstrap-colorpicker.css">
+
+	<link rel="stylesheet" href="backend/plugins/daterangepicker/daterangepicker-bs3.css">
+	<link rel="stylesheet" href="backend/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+
+	<link rel="stylesheet" href="backend/dist/css/custom_style.css">
+	<link rel="stylesheet" href="backend/datepicker/css/bootstrap-datetimepicker.css">
+	<!--file dropify-->
+	<!-- <link rel="stylesheet" href="backend/dist/css/dropify.min.css"> -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js">
+
+	<!--file nprogress-->
+	<link href="backend/dist/css/nprogress.css" rel="stylesheet">
+
+	<!--print table-->
+	<link href="backend/dist/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+	<link href="backend/dist/datatables/css/buttons.dataTables.min.css" rel="stylesheet">
+	<link href="backend/dist/datatables/css/dataTables.bootstrap.min.css" rel="stylesheet">
+	<!--print table mobile support-->
+	<link href="backend/dist/datatables/css/responsive.dataTables.min.css" rel="stylesheet">
+	<link href="backend/dist/datatables/css/rowReorder.dataTables.min.css" rel="stylesheet">
+	<!--language css-->
+	<link rel="stylesheet" type="text/css"
+		href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/0.8.2/css/flag-icon.min.css">
+	<link rel="stylesheet" type="text/css" href="backend/dist/css/bootstrap-select.min.css">
+	<script src="backend/custom/jquery.min.js"></script>
+	<script src="backend/dist/js/moment.min.js"></script>
+	<script src="backend/datepicker/js/bootstrap-datetimepicker.js"></script>
+	<script src="backend/plugins/colorpicker/bootstrap-colorpicker.js"></script>
+	<script src="backend/datepicker/date.js"></script>
+	<script src="backend/dist/js/jquery-ui.min.js"></script>
+	<script src="backend/js/school-custom.js"></script>
+	<script src="backend/js/school-admin-custom.js"></script>
+	<script src="backend/js/sstoast.js"></script>
+	<!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>          -->
+	<!-- fullCalendar -->
+	<link rel="stylesheet" href="backend/fullcalendar/dist/fullcalendar.min.css">
+	<link rel="stylesheet" href="backend/fullcalendar/dist/fullcalendar.print.min.css" media="print">
+	<script type="text/javascript">
+		var baseurl = "";
+		var start_week = 1;
+		var chk_validate = "";
+	</script>
+
+
+
+	<style type="text/css">
+		span.flag-icon.flag-icon-us {
+			text-orientation: mixed;
+		}
+
+	</style>
+</head>
+
+<body class="hold-transition skin-blue fixed sidebar-mini">
+
+
+	<script>
+
+		function collapseSidebar() {
+
+			if (Boolean(sessionStorage.getItem('sidebar-toggle-collapsed'))) {
+				sessionStorage.setItem('sidebar-toggle-collapsed', '');
+			} else {
+				sessionStorage.setItem('sidebar-toggle-collapsed', '1');
+			}
+
+		}
+
+		function checksidebar() {
+			if (Boolean(sessionStorage.getItem('sidebar-toggle-collapsed'))) {
+				var body = document.getElementsByTagName('body')[0];
+				body.className = body.className + ' sidebar-collapse';
+			}
+		}
+
+		checksidebar();
+
+	</script>
+	<div class="wrapper">
+
+		<header class="main-header" id="alert">
+			<a href="admin/admin/dashboard" class="logo">
+				<span class="logo-mini"><img src="uploads/school_content/admin_small_logo/1.png" alt="Online School" /></span>
+				<span class="logo-lg"><img src="uploads/school_content/admin_logo/1.png" alt="Online School" /></span>
+			</a>
+			<nav class="navbar navbar-static-top" role="navigation">
+				<a onclick="collapseSidebar()" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<div class="col-lg-5 col-md-3 col-sm-2 col-xs-5">
+					<span href="#" class="sidebar-session">
+						Online School </span>
+				</div>
+				<div class="col-lg-7 col-md-9 col-sm-10 col-xs-7">
+					<div class="pull-right">
+
+						<form id="header_search_form" class="navbar-form navbar-left search-form" role="search"
+							action="admin/admin/search" method="POST">
+							<input type='hidden' name='ci_csrf_token' value='' />
+							<div class="input-group">
+								<input type="text" value="" name="search_text1" id="search_text1"
+									class="form-control search-form search-form3"
+									placeholder="Search By Student Name, Roll Number, Enroll Number, National Id, Local Id Etc.">
+								<span class="input-group-btn">
+									<button type="submit" name="search" id="search-btn" onclick="getstudentlist()"
+										class="btn btn-flat topsidesearchbtn"><i class="fa fa-search"></i></button>
+								</span>
+							</div>
+
+						</form>
+						<div class="navbar-custom-menu">
+
+
+
+
+
+
+
+
+
+							<div class="langdiv"><select class="languageselectpicker" onchange="set_languages(this.value)" type="text"
+									id="languageSwitcher">
+
+									<option data-content='<span class="flag-icon flag-icon-us"></span> English' value="4" Selected>
+									</option>
+									<option data-content='<span class="flag-icon flag-icon-ru"></span> Russian' value="61"></option>
+
+								</select></div>
+
+
+							<ul class="nav navbar-nav headertopmenu">
+								<li class="cal15"><a data-placement="bottom" data-toggle="tooltip" title="Calendar"
+										href="admin/calendar/events"><i class="fa fa-calendar"></i></a>
+
+								</li>
+								<li class="dropdown" data-placement="bottom" data-toggle="tooltip" title="Task">
+									<a href="#" class="dropdown-toggle todoicon" data-toggle="dropdown">
+										<i class="fa fa-check-square-o"></i>
+									</a>
+									<ul class="dropdown-menu menuboxshadow">
+
+										<li class="todoview plr10 ssnoti">Today you have 0 pending task.<a href="admin/calendar/events"
+												class="pull-right pt0">View All</a></li>
+										<li>
+											<ul class="todolist">
+
+											</ul>
+										</li>
+									</ul>
+								</li>
+
+
+								<li class="cal15"><a data-placement="bottom" data-toggle="tooltip" title="" href="admin/chat"
+										data-original-title="Chat" class="todoicon"><i class="fa fa-whatsapp"></i></a></li>
+
+
+								<li class="dropdown user-menu">
+									<a class="dropdown-toggle" style="padding: 15px 13px;" data-toggle="dropdown" href="#"
+										aria-expanded="false">
+										<img src="uploads/staff_images/1.png" class="topuser-image" alt="User Image">
+									</a>
+									<ul class="dropdown-menu dropdown-user menuboxshadow">
+										<li>
+											<div class="sstopuser">
+												<div class="ssuserleft">
+													<a href="admin/staff/profile/1"><img src="uploads/staff_images/1.png" alt="User Image"></a>
+												</div>
+
+												<div class="sstopuser-test">
+													<h4 class="text-capitalize">Administrator</h4>
+													<h5>Super Admin</h5>
+
+												</div>
+
+												<div class="divider"></div>
+												<div class="sspass">
+													<a href="admin/staff/profile/1" data-toggle="tooltip" title=""
+														data-original-title="My Profile"><i class="fa fa-user"></i>Profile </a>
+													<a class="pl25" href="admin/admin/changepass" data-toggle="tooltip" title=""
+														data-original-title="Change Password"><i class="fa fa-key"></i>Password</a> <a
+														class="pull-right" href="site/logout"><i class="fa fa-sign-out fa-fw"></i>Logout</a>
+												</div>
+											</div>
+											<!--./sstopuser-->
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</header>
+
+		<aside class="main-sidebar" id="alert2">
+			<form class="navbar-form navbar-left search-form2" role="search" action="admin/admin/search" method="POST">
+				<input type='hidden' name='ci_csrf_token' value='' />
+				<div class="input-group ">
+					<input type="text" name="search_text" class="form-control search-form"
+						placeholder="Search By Student Name, Roll Number, Enroll Number, National Id, Local Id Etc.">
+					<span class="input-group-btn">
+						<button type="submit" name="search" id="search-btn"
+							style="padding: 3px 12px !important;border-radius: 0px 30px 30px 0px; background: #fff;"
+							class="btn btn-flat"><i class="fa fa-search"></i></button>
+					</span>
+				</div>
+			</form>
+			<section class="sidebar" id="sibe-box">
+				<ul class="sessionul fixedmenu">
+					<li class="removehover">
+						<a data-toggle="modal" data-target="#sessionModal"><span>Current Session: 2021-22</span><i
+								class="fa fa-pencil pull-right"></i></a>
+
+
+					</li>
+
+					<li class="dropdown">
+
+						<a class="dropdown-toggle drop5" data-toggle="dropdown" href="#" aria-expanded="false">
+							<span>Quick Links</span> <i class="fa fa-th pull-right ftlayer"></i>
+						</a>
+
+						<ul class="dropdown-menu verticalmenu" style="min-width:194px;font-size:10pt;left:3px;">
+
+							<li role="presentation"><a style="color:#282828; font-family: 'Roboto-Bold';padding:6px 20px;"
+									role="menuitem" tabindex="-1" href="student/search"><i class="fa fa-user-plus"></i>Student
+									Details</a></li>
+
+
+							<li role="presentation"><a style="color:#282828; font-family: 'Roboto-Bold';padding:6px 20px;"
+									role="menuitem" tabindex="-1" href="studentfee"><i class="fa fa-money"></i>Collect Fees</a></li>
+
+
+							<li role="presentation"><a style="color:#282828; font-family: 'Roboto-Bold';padding:6px 20px;"
+									role="menuitem" tabindex="-1" href="admin/income"> &nbsp;<i class="fa fa-usd"></i> Add Income</a>
+							</li>
+
+							<li role="presentation"><a style="color:#282828; font-family: 'Roboto-Bold';padding:6px 20px;"
+									role="menuitem" tabindex="-1" href="admin/expense"><i class="fa fa-credit-card"></i>Add Expense</a>
+							</li>
+
+
+							<li role="presentation"><a style="color:#282828; font-family: 'Roboto-Bold';padding:6px 20px;"
+									role="menuitem" tabindex="-1" href="admin/stuattendence"><i class="fa fa-calendar-check-o"></i>Student
+									Attendance</a></li>
+
+
+							<li role="presentation"><a style="color:#282828; font-family: 'Roboto-Bold';padding:6px 20px;"
+									role="menuitem" tabindex="-1" href="admin/staffattendance"><i class="fa fa-calendar-check-o"></i>Staff
+									Attendance</a></li>
+
+
+							<li role="presentation"><a style="color:#282828; font-family: 'Roboto-Bold';padding:6px 20px;"
+									role="menuitem" tabindex="-1" href="admin/staff"><i class="fa fa-calendar-check-o"></i>Staff
+									Directory</a></li>
+
+
+							<li role="presentation"><a style="color:#282828; font-family: 'Roboto-Bold';padding:6px 20px;"
+									role="menuitem" tabindex="-1" href="admin/examgroup"><i class="fa fa-map-o"></i>Exam Group</a></li>
+
+
+							<li role="presentation"><a style="color:#282828; font-family: 'Roboto-Bold';padding:6px 20px;"
+									role="menuitem" tabindex="-1" href="admin/examresult"><i class="fa fa-columns"></i>Exam Result</a>
+							</li>
+
+
+							<li role="presentation"><a style="color:#282828; font-family: 'Roboto-Bold';padding:6px 20px;"
+									role="menuitem" tabindex="-1" href="admin/timetable/create"><i
+										class="fa fa-calendar-times-o"></i>Class Timetable</a></li>
+
+
+							<li role="presentation"><a style="color:#282828; font-family: 'Roboto-Bold';padding:6px 20px;"
+									role="menuitem" tabindex="-1" href="admin/enquiry"><i class="fa fa-calendar-check-o"></i>Admission
+									Enquiry</a></li>
+
+							<li role="presentation"><a style="color:#282828; font-family: 'Roboto-Bold';padding:6px 20px;"
+									role="menuitem" tabindex="-1" href="admin/complaint"><i
+										class="fa fa-calendar-check-o"></i>Complain</a></li>
+
+							<li role="presentation"><a style="color:#282828; font-family: 'Roboto-Bold';padding:6px 20px;"
+									role="menuitem" tabindex="-1" href="admin/content"><i class="fa fa-download"></i>Upload Content</a>
+							</li>
+
+
+							<li role="presentation"><a style="color:#282828; font-family: 'Roboto-Bold';padding:6px 20px;"
+									role="menuitem" tabindex="-1" href="admin/itemstock"><i class="fa fa-object-group"></i>Add Item
+									Stock</a></li>
+
+
+							<li role="presentation"><a style="color:#282828; font-family: 'Roboto-Bold';padding:6px 20px;"
+									role="menuitem" tabindex="-1" href="admin/notification"><i class="fa fa-bullhorn"></i>Notice
+									Board</a></li>
+
+							<li role="presentation"><a style="color:#282828; font-family: 'Roboto-Bold';padding:6px 20px;"
+									role="menuitem" tabindex="-1" href="admin/mailsms/compose"><i class="fa fa-envelope-o"></i>Send
+									Email / SMS</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="sidebar-menu verttop">
+
+					<li class="treeview ">
+						<a href="#">
+							<i class="fa fa-ioxhost ftlayer"></i> <span>Front Office</span> <i
+								class="fa fa-angle-left pull-right"></i>
+						</a>
+						<ul class="treeview-menu">
+
+							<li class=""><a href="admin/enquiry"><i class="fa fa-angle-double-right"></i> Admission
+									Enquiry </a></li>
+
+							<li class=""><a href="admin/visitors"><i class="fa fa-angle-double-right"></i> Visitor
+									Book</a></li>
+
+
+							<li class=""><a href="admin/generalcall"><i class="fa fa-angle-double-right"></i> Phone Call
+									Log</a></li>
+
+
+							<li class=""><a href="admin/dispatch"><i class="fa fa-angle-double-right"></i> Postal
+									Dispatch</a></li>
+
+
+							<li class=""><a href="admin/receive"><i class="fa fa-angle-double-right"></i> Postal
+									Receive</a></li>
+
+
+							<li class=""><a href="admin/complaint"><i class="fa fa-angle-double-right"></i> Complain</a>
+							</li>
+
+
+							<li class=""><a href="admin/visitorspurpose"><i class="fa fa-angle-double-right"></i> Setup
+									Front Office</a></li>
+
+						</ul>
+					</li>
+
+
+					<li class="treeview ">
+						<a href="#">
+							<i class="fa fa-user-plus ftlayer"></i> <span>Student Information</span> <i
+								class="fa fa-angle-left pull-right"></i>
+						</a>
+						<ul class="treeview-menu">
+
+							<li class=""><a href="student/search"><i class="fa fa-angle-double-right"></i> Student
+									Details</a></li>
+
+
+							<li class=""><a href="student/create"><i class="fa fa-angle-double-right"></i> Student
+									Admission</a></li>
+
+							<li class=""><a href="admin/onlinestudent"><i class="fa fa-angle-double-right"></i> Online
+									Admission</a></li>
+
+							<li class=""><a href="student/disablestudentslist"><i class="fa fa-angle-double-right"></i>
+									Disabled Students</a></li>
+							<li class=""><a href="student/multiclass"><i class="fa fa-angle-double-right"></i> Multi
+									Class Student</a></li>
+							<li class=""><a href="student/bulkdelete"><i class="fa fa-angle-double-right"></i> Bulk
+									Delete</a>
+							</li>
+
+							<li class=""><a href="category"><i class="fa fa-angle-double-right"></i> Student
+									Categories</a></li>
+
+							<li class=""><a href="admin/schoolhouse"><i class="fa fa-angle-double-right"></i> Student
+									House</a></li>
+							<li class=""><a href="admin/disable_reason"><i class="fa fa-angle-double-right"></i> Disable
+									Reason</a></li>
+
+
+
+						</ul>
+					</li>
+					<li class="treeview ">
+						<a href="#">
+							<i class="fa fa-money ftlayer"></i> <span> Fees Collection</span> <i
+								class="fa fa-angle-left pull-right"></i>
+						</a>
+						<ul class="treeview-menu">
+							<li class=""><a href="studentfee"><i class="fa fa-angle-double-right"></i> Collect Fees</a>
+							</li>
+							<li class=""><a href="studentfee/searchpayment"><i class="fa fa-angle-double-right"></i>
+									Search Fees Payment</a></li>
+							<li class=""><a href="studentfee/feesearch"><i class="fa fa-angle-double-right"></i> Search
+									Due Fees </a></li>
+							<li class=""><a href="admin/feemaster"><i class="fa fa-angle-double-right"></i> Fees
+									Master</a></li>
+							<li class=""><a href="admin/feegroup"><i class="fa fa-angle-double-right"></i> Fees
+									Group</a></li>
+							<li class=""><a href="admin/feetype"><i class="fa fa-angle-double-right"></i> Fees Type</a>
+							</li>
+							<li class=""><a href="admin/feediscount"><i class="fa fa-angle-double-right"></i> Fees
+									Discount</a></li>
+							<li class=""><a href="admin/feesforward"><i class="fa fa-angle-double-right"></i> Fees Carry
+									Forward</a></li>
+							<li class=""><a href="admin/feereminder/setting"><i class="fa fa-angle-double-right"></i>
+									Fees Reminder</a></li>
+
+						</ul>
+					</li>
+
+					<li class="treeview ">
+						<a href="#">
+							<i class="fa fa-usd ftlayer"></i> <span>Income</span> <i class="fa fa-angle-left pull-right"></i>
+						</a>
+						<ul class="treeview-menu">
+							<li class=""><a href="admin/income"><i class="fa fa-angle-double-right"></i>Add Income</a>
+							</li>
+							<li class=""><a href="admin/income/incomesearch"><i class="fa fa-angle-double-right"></i>Search Income</a>
+							</li>
+							<li class=""><a href="admin/incomehead"><i class="fa fa-angle-double-right"></i>Income
+									Head</a></li>
+						</ul>
+					</li>
+					<li class="treeview ">
+						<a href="#">
+							<i class="fa fa-credit-card ftlayer"></i> <span>Expenses</span> <i
+								class="fa fa-angle-left pull-right"></i>
+						</a>
+						<ul class="treeview-menu">
+							<li class=""><a href="admin/expense"><i class="fa fa-angle-double-right"></i> Add
+									Expense</a></li>
+							<li class=""><a href="admin/expense/expensesearch"><i class="fa fa-angle-double-right"></i>
+									Search Expense</a></li>
+							<li class=""><a href="admin/expensehead"><i class="fa fa-angle-double-right"></i> Expense
+									Head</a></li>
+						</ul>
+					</li>
+					<li class="treeview ">
+						<a href="#">
+							<i class="fa fa-calendar-check-o ftlayer"></i> <span>Attendance</span> <i
+								class="fa fa-angle-left pull-right"></i>
+						</a>
+						<ul class="treeview-menu">
+							<li class=""><a href="admin/stuattendence"><i class="fa fa-angle-double-right"></i> Student
+									Attendance</a></li>
+							<li class=""><a href="admin/stuattendence/attendencereport"><i class="fa fa-angle-double-right"></i>
+									Attendance By Date</a></li>
+
+
+							<li class=""><a href="admin/approve_leave"><i class="fa fa-angle-double-right"></i> Approve
+									Leave</a></li>
+						</ul>
+					</li>
+
+					<li class="treeview ">
+						<a href="#">
+							<i class="fa fa-map-o ftlayer"></i> <span>Examinations</span> <i class="fa fa-angle-left pull-right"></i>
+						</a>
+						<ul class="treeview-menu">
+
+							<li class=""><a href="admin/examgroup"><i class="fa fa-angle-double-right"></i> Exam
+									Group</a></li>
+							<li class=""><a href="admin/exam_schedule"><i class="fa fa-angle-double-right"></i> Exam
+									Schedule</a></li>
+							<li class=""><a href="admin/examresult"><i class="fa fa-angle-double-right"></i> Exam
+									Result</a></li>
+							<li class=""><a href="admin/admitcard"><i class="fa fa-angle-double-right"></i> Design Admit
+									Card</a></li>
+							<li class=""><a href="admin/examresult/admitcard"><i class="fa fa-angle-double-right"></i>
+									Print Admit Card</a></li>
+							<li class=""><a href="admin/marksheet"><i class="fa fa-angle-double-right"></i> Design
+									Marksheet</a></li>
+							<li class=""><a href="admin/examresult/marksheet"><i class="fa fa-angle-double-right"></i>
+									Print Marksheet</a></li>
+							<li class=""><a href="admin/grade"><i class="fa fa-angle-double-right"></i> Marks Grade</a>
+							</li>
+
+
+						</ul>
+					</li>
+
+					<li class="treeview ">
+						<a href="#">
+							<i class="fa fa-rss ftlayer"></i> <span>Online Examinations</span> <i
+								class="fa fa-angle-left pull-right"></i>
+						</a>
+						<ul class="treeview-menu">
+							<li class=""><a href="admin/onlineexam"><i class="fa fa-angle-double-right"></i> Online
+									Exam</a></li>
+							<li class=""><a href="admin/question"><i class="fa fa-angle-double-right"></i> Question
+									Bank</a></li>
+
+
+
+						</ul>
+					</li>
+					<li class="treeview ">
+						<a href="#">
+							<i class="fa fa-list-alt ftlayer"></i> <span>Lesson Plan</span> <i
+								class="fa fa-angle-left pull-right"></i>
+						</a>
+						<ul class="treeview-menu">
+							<li class=""><a href="admin/syllabus"><i class="fa fa-angle-double-right"></i> Manage Lesson
+									Plan</a></li>
+							<li class=""><a href="admin/syllabus/status"><i class="fa fa-angle-double-right"></i> Manage
+									Syllabus Status</a></li>
+							<li class=""><a href="admin/lessonplan/lesson"><i class="fa fa-angle-double-right"></i>
+									Lesson</a></li>
+							<li class=""><a href="admin/lessonplan/topic"><i class="fa fa-angle-double-right"></i>
+									Topic</a></li>
+
+						</ul>
+					</li>
+					<li class="treeview ">
+						<a href="#">
+							<i class="fa fa-mortar-board ftlayer"></i> <span>Academics</span> <i
+								class="fa fa-angle-left pull-right"></i>
+						</a>
+						<ul class="treeview-menu">
+
+							<li class=""><a href="admin/timetable/classreport"><i class="fa fa-angle-double-right"></i>
+									Class Timetable</a></li>
+							<li class=""><a href="admin/timetable/mytimetable"><i class="fa fa-angle-double-right"></i>
+									Teachers Timetable</a></li>
+							<li class=""><a href="admin/teacher/assign_class_teacher"><i class="fa fa-angle-double-right"></i> Assign
+									Class Teacher</a></li>
+
+							<li class=""><a href="admin/stdtransfer"><i class="fa fa-angle-double-right"></i> Promote
+									Students</a></li>
+							<li class=""><a href="admin/subjectgroup"><i class="fa fa-angle-double-right"></i> Subject
+									Group</a></li>
+							<li class=""><a href="admin/subject"><i class="fa fa-angle-double-right"></i> Subjects</a>
+							</li>
+							<li class=""><a href="classes"><i class="fa fa-angle-double-right"></i> Class</a></li>
+							<li class=""><a href="sections"><i class="fa fa-angle-double-right"></i> Sections</a></li>
+
+						</ul>
+					</li>
+
+					<li class="treeview ">
+						<a href="#">
+							<i class="fa fa-sitemap ftlayer"></i> <span>Human Resource</span> <i
+								class="fa fa-angle-left pull-right"></i>
+						</a>
+						<ul class="treeview-menu">
+							<li class=""><a href="admin/staff"><i class="fa fa-angle-double-right"></i> Staff
+									Directory</a></li>
+
+
+							<li class=""><a href="admin/staffattendance"><i class="fa fa-angle-double-right"></i> Staff
+									Attendance</a></li>
+
+
+							<li class=""><a href="admin/payroll"><i class="fa fa-angle-double-right"></i> Payroll</a>
+							</li>
+							<li class=""><a href="admin/leaverequest/leaverequest"><i class="fa fa-angle-double-right"></i> Approve
+									Leave Request</a></li>
+
+							<li class=""><a href="admin/staff/leaverequest"><i class="fa fa-angle-double-right"></i>
+									Apply Leave</a></li>
+
+							<li class=""><a href="admin/leavetypes"><i class="fa fa-angle-double-right"></i> Leave
+									Type</a></li>
+
+							<li class=""><a href="admin/staff/rating"><i class="fa fa-angle-double-right"></i> Teachers
+									Rating</a></li>
+							<li class=""><a href="admin/department/department"><i class="fa fa-angle-double-right"></i>
+									Department</a></li>
+
+							<li class=""><a href="admin/designation/designation"><i class="fa fa-angle-double-right"></i>
+									Designation</a></li>
+
+							<li class=""><a href="admin/staff/disablestafflist"><i class="fa fa-angle-double-right"></i>
+									Disabled Staff</a></li>
+						</ul>
+					</li>
+					<li class="treeview ">
+						<a href="#">
+							<i class="fa fa-bullhorn ftlayer"></i> <span>Communicate</span> <i
+								class="fa fa-angle-left pull-right"></i>
+						</a>
+						<ul class="treeview-menu">
+
+							<li class=""><a href="admin/notification"><i class="fa fa-angle-double-right"></i> Notice
+									Board</a></li>
+							<li class=""><a href="admin/mailsms/compose"><i class="fa fa-angle-double-right"></i> Send
+									Email</a></li>
+							<li class=""><a href="admin/mailsms/compose_sms"><i class="fa fa-angle-double-right"></i>
+									Send SMS</a></li>
+							<li class=""><a href="admin/mailsms/index"><i class="fa fa-angle-double-right"></i> Email /
+									SMS Log</a></li>
+
+							<li class=""><a href="student/bulkmail"><i class="fa fa-angle-double-right"></i> Login
+									Credentials Send</a></li>
+
+						</ul>
+					</li>
+
+					<li class="treeview ">
+						<a href="#">
+							<i class="fa fa-file-video-o ftlayer"></i> <span>Online Course</span> <i
+								class="fa fa-angle-left pull-right"></i>
+						</a>
+						<ul class="treeview-menu">
+							<li class=""><a href="onlinecourse/course/index"><i class="fa fa-angle-double-right"></i>Online Course</a>
+							</li>
+							<li class=""><a href="onlinecourse/offlinepayment"><i class="fa fa-angle-double-right"></i>Offline
+									Payment</a></li>
+							<li class=""><a href="onlinecourse/coursereport/report"><i class="fa fa-angle-double-right"></i>Online
+									Course Report</a></li>
+							<li class=""><a href="onlinecourse/course/setting"><i class="fa fa-angle-double-right"></i>Setting</a>
+							</li>
+						</ul>
+					</li>
+
+					<li class="treeview ">
+						<a href="#">
+							<i class="fa fa-video-camera ftlayer"></i> <span>Zoom Live Classes</span> <i
+								class="fa fa-angle-left pull-right"></i>
+						</a>
+						<ul class="treeview-menu">
+
+
+							<li class=""><a href="admin/conference/timetable"><i class="fa fa-angle-double-right"></i>
+									Live Classes</a></li>
+							<li class=""><a href="admin/conference/meeting"><i class="fa fa-angle-double-right"></i>
+									Live Meeting </a></li>
+							<li class=""><a href="admin/conference/class_report"><i class="fa fa-angle-double-right"></i> Live Classes
+									Report</a></li>
+							<li class=""><a href="admin/conference/meeting_report"><i class="fa fa-angle-double-right"></i> Live
+									Meeting Report</a></li>
+							<li class=""><a href="admin/conference"><i class="fa fa-angle-double-right"></i> Setting</a>
+							</li>
+						</ul>
+					</li>
+
+
+					<li class="treeview ">
+						<a href="#">
+							<i class="fa fa-download ftlayer"></i> <span>Download Center</span> <i
+								class="fa fa-angle-left pull-right"></i>
+						</a>
+						<ul class="treeview-menu">
+							<li class=""><a href="admin/content"><i class="fa fa-angle-double-right"></i> Upload
+									Content</a></li>
+							<li class=""><a href="admin/content/assignment"><i class="fa fa-angle-double-right"></i>
+									Assignments</a></li>
+							<li class=""><a href="admin/content/studymaterial"><i class="fa fa-angle-double-right"></i>
+									Study Material</a></li>
+							<li class=""><a href="admin/content/syllabus"><i class="fa fa-angle-double-right"></i>
+									Syllabus</a></li>
+							<li class=""><a href="admin/content/other"><i class="fa fa-angle-double-right"></i> Other
+									Downloads</a></li>
+						</ul>
+					</li>
+					<li class="treeview ">
+						<a href="#">
+							<i class="fa fa-flask ftlayer"></i> <span>Homework</span> <i class="fa fa-angle-left pull-right"></i>
+						</a>
+						<ul class="treeview-menu">
+							<li class=""><a href="homework"><i class="fa fa-angle-double-right"></i> Add Homework</a>
+							</li>
+						</ul>
+					</li>
+					<li class="treeview ">
+						<a href="#">
+							<i class="fa fa-book ftlayer"></i> <span>Library</span> <i class="fa fa-angle-left pull-right"></i>
+						</a>
+						<ul class="treeview-menu">
+
+
+							<li class="">
+								<a href="admin/book/getall"><i class="fa fa-angle-double-right"></i>Book List</a>
+							</li>
+							<li class=""><a href="admin/member"><i class="fa fa-angle-double-right"></i>Issue Return</a>
+							</li>
+							<li class=""><a href="admin/member/student"><i class="fa fa-angle-double-right"></i>Add
+									Student</a></li>
+							<li class=""><a href="admin/member/teacher"><i class="fa fa-angle-double-right"></i>Add
+									Staff Member</a></li>
+
+
+
+						</ul>
+					</li>
+					<li class="treeview ">
+						<a href="#">
+							<i class="fa fa-object-group ftlayer"></i> <span>Inventory</span> <i
+								class="fa fa-angle-left pull-right"></i>
+						</a>
+						<ul class="treeview-menu">
+							<li class=""><a href="admin/issueitem"><i class="fa fa-angle-double-right"></i>Issue
+									Item</a></li>
+							<li class=""><a href="admin/itemstock"><i class="fa fa-angle-double-right"></i>Add Item
+									Stock</a></li>
+							<li class=""><a href="admin/item"><i class="fa fa-angle-double-right"></i>Add Item</a></li>
+							<li class=""><a href="admin/itemcategory"><i class="fa fa-angle-double-right"></i>Item
+									Category</a></li>
+							<li class=""><a href="admin/itemstore"><i class="fa fa-angle-double-right"></i>Item
+									Store</a></li>
+							<li class=""><a href="admin/itemsupplier"><i class="fa fa-angle-double-right"></i>Item
+									Supplier</a></li>
+						</ul>
+					</li>
+					<li class="treeview ">
+						<a href="#">
+							<i class="fa fa-newspaper-o ftlayer"></i> <span>Certificate</span> <i
+								class="fa fa-angle-left pull-right"></i>
+						</a>
+						<ul class="treeview-menu">
+							<li class=""><a href="admin/certificate/"><i class="fa fa-angle-double-right"></i>Student
+									Certificate</a></li>
+							<li class=""><a href="admin/generatecertificate/"><i class="fa fa-angle-double-right"></i>Generate
+									Certificate</a></li>
+							<li class=""><a href="admin/studentidcard/"><i class="fa fa-angle-double-right"></i>Student
+									ID Card</a></li>
+							<li class=""><a href="admin/generateidcard/search"><i class="fa fa-angle-double-right"></i>Generate ID
+									Card</a></li>
+							<li class=""><a href="admin/staffidcard/"><i class="fa fa-angle-double-right"></i>Staff ID
+									Card</a></li>
+							<li class=""><a href="admin/generatestaffidcard/"><i class="fa fa-angle-double-right"></i>Generate Staff
+									ID Card</a></li>
+						</ul>
+					</li>
+					<li class="treeview ">
+						<a href="#">
+							<i class="fa fa-empire ftlayer"></i> <span>Front CMS</span> <i class="fa fa-angle-left pull-right"></i>
+						</a>
+						<ul class="treeview-menu">
+							<li class=""><a href="admin/front/events"><i class="fa fa-angle-double-right"></i> Event</a>
+							</li>
+							<li class=""><a href="admin/front/gallery"><i class="fa fa-angle-double-right"></i>
+									Gallery</a></li>
+							<li class=""><a href="admin/front/notice"><i class="fa fa-angle-double-right"></i> News</a>
+							</li>
+							<li class=""><a href="admin/front/media"><i class="fa fa-angle-double-right"></i> Media
+									Manager</a></li>
+							<li class=""><a href="admin/front/page"><i class="fa fa-angle-double-right"></i> Pages</a>
+							</li>
+							<li class=""><a href="admin/front/menus"><i class="fa fa-angle-double-right"></i> Menus</a>
+							</li>
+							<li class=""><a href="admin/front/banner"><i class="fa fa-angle-double-right"></i> Banner
+									Images</a></li>
+						</ul>
+					</li>
+
+
+					<li class="treeview active">
+						<a href="#">
+							<i class="fa fa-universal-access ftlayer"></i> <span>Alumni</span> <i
+								class="fa fa-angle-left pull-right"></i>
+						</a>
+						<ul class="treeview-menu">
+							<li class="active"><a href="admin/alumni/alumnilist"><i class="fa fa-angle-double-right"></i> Manage
+									Alumni</a></li>
+							<li class=""><a href="admin/alumni/events"><i class="fa fa-angle-double-right"></i>
+									Events</a></li>
+
+						</ul>
+					</li>
+					<li class="treeview ">
+						<a href="#">
+							<i class="fa fa-line-chart ftlayer"></i> <span>Reports</span> <i class="fa fa-angle-left pull-right"></i>
+						</a>
+						<ul class="treeview-menu">
+							<li class=""><a href="report/studentinformation"><i class="fa fa-angle-double-right"></i>
+									Student Information</a></li>
+							<li class=""><a href="report/finance"><i class="fa fa-angle-double-right"></i> Finance</a>
+							</li>
+
+							<li class=""><a href="report/attendance"><i class="fa fa-angle-double-right"></i>
+									Attendance</a></li>
+							<li class=""><a href="report/examinations"><i class="fa fa-angle-double-right"></i>
+									Examinations</a></li>
+							<li class=""><a href="admin/onlineexam/report"><i class="fa fa-angle-double-right"></i>
+									Online Examinations</a></li>
+							<li class=""><a href="report/lesson_plan"><i class="fa fa-angle-double-right"></i> Lesson
+									Plan</a></li>
+
+							<li class=""><a href="report/staff_report"><i class="fa fa-angle-double-right"></i> Human
+									Resource</a></li>
+
+							<li class=""><a href="report/library"><i class="fa fa-angle-double-right"></i> Library</a>
+							</li>
+							<li class=""><a href="report/inventory"><i class="fa fa-angle-double-right"></i>
+									Inventory</a></li>
+							<li class=""><a href="report/alumnireport"><i class="fa fa-angle-double-right"></i>
+									Alumni</a></li>
+							<li class=""><a href="admin/userlog"><i class="fa fa-angle-double-right"></i> User Log</a>
+							</li>
+							<li class=""><a href="admin/audit"><i class="fa fa-angle-double-right"></i>
+									Audit Trail Report</a></li>
+
+
+						</ul>
+					</li>
+
+					<li class="treeview ">
+						<a href="#">
+							<i class="fa fa-gears ftlayer"></i> <span>System Settings</span> <i
+								class="fa fa-angle-left pull-right"></i>
+						</a>
+						<ul class="treeview-menu">
+							<li class=""><a href="schsettings"><i class="fa fa-angle-double-right"></i> General
+									Setting</a></li>
+							<li class=""><a href="sessions"><i class="fa fa-angle-double-right"></i> Session Setting</a>
+							</li>
+							<li class=""><a href="admin/notification/setting"><i class="fa fa-angle-double-right"></i>
+									Notification Setting</a></li>
+							<li class=""><a href="smsconfig"><i class="fa fa-angle-double-right"></i> SMS Setting</a>
+							</li>
+							<li class=""><a href="emailconfig"><i class="fa fa-angle-double-right"></i> Email
+									Setting</a></li>
+							<li class=""><a href="admin/paymentsettings"><i class="fa fa-angle-double-right"></i>
+									Payment Methods</a></li>
+							<li class=""><a href="admin/print_headerfooter"><i class="fa fa-angle-double-right"></i>
+									Print Header Footer</a></li>
+							<li class=""><a href="admin/frontcms"><i class="fa fa-angle-double-right"></i> Front CMS
+									Setting</a></li>
+							<li class=""><a href="admin/roles"><i class="fa fa-angle-double-right"></i> Roles
+									Permissions</a></li>
+							<li class=""><a href="admin/admin/backup"><i class="fa fa-angle-double-right"></i> Backup /
+									Restore</a></li>
+							<li class=""><a href="admin/language"><i class="fa fa-angle-double-right"></i> Languages</a>
+							</li>
+							<li class=""><a href="admin/users"><i class="fa fa-angle-double-right"></i> Users</a></li>
+							<li class=""><a href="admin/module"><i class="fa fa-angle-double-right"></i> Modules</a>
+							</li>
+							<li class=""><a href="admin/customfield"><i class="fa fa-angle-double-right"></i> Custom
+									Fields</a></li>
+							<li class=""><a href="admin/captcha"><i class="fa fa-angle-double-right"></i> Captcha
+									Setting</a></li>
+							<li class=""><a href="admin/systemfield"><i class="fa fa-angle-double-right"></i> System
+									Fields</a></li>
+							<li class=""><a href="student/profilesetting"><i class="fa fa-angle-double-right"></i>
+									Student Profile Update</a></li>
+							<li class=""><a href="admin/onlineadmission/admissionsetting"><i class="fa fa-angle-double-right"></i>
+									Online Admission</a></li>
+							<li class=""><a href="admin/admin/filetype"><i class="fa fa-angle-double-right"></i> File
+									Types</a></li>
+							<!--<li class=""><a href="admin/updater"><i class="fa fa-angle-double-right"></i> System Update</a></li>-->
+
+						</ul>
+					</li>
+				</ul>
+			</section>
+		</aside>
+		<script>
+			function defoult(id) {
+				var defoult = $('#languageSwitcher').val();
+
+
+				$.ajax({
+					type: "POST",
+					url: base_url + "admin/language/default_language/" + id,
+					data: {},
+					success: function (data) {
+						successMsg("Status Change Successfully");
+						$('#languageSwitcher').html(data);
+
+					}
+				});
+
+				window.location.reload('true');
+			}
+
+			function set_languages(lang_id) {
+				$.ajax({
+					type: "POST",
+					url: base_url + "admin/language/user_language/" + lang_id,
+					data: {},
+					success: function (data) {
+						successMsg("Status Change Successfully");
+						window.location.reload('true');
+
+					}
+				});
+
+			}
+		</script>
+		<style type="text/css">
+			.borderwhite {
+				border-top-color: #fff !important;
+			}
+
+			.box-header>.box-tools {
+				display: none;
+			}
+
+			.sidebar-collapse #barChart {
+				height: 100% !important;
+			}
+
+			.sidebar-collapse #lineChart {
+				height: 100% !important;
+			}
+
+		</style>
+		<div class="content-wrapper" style="min-height: 946px;">
+			<section class="content">
+				<div class="">
+
+
+
+				</div>
+				<div class="row">
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="topprograssstart">
+							<p class="text-uppercase mt5 clearfix"><i class="fa fa-money ftlayer"></i>Fees Awaiting
+								Payment<span class="pull-right">0/0</span>
+							</p>
+							<div class="progress-group">
+								<div class="progress progress-minibar">
+									<div class="progress-bar progress-bar-aqua" style="width: 0%"></div>
+								</div>
+							</div>
+						</div>
+						<!--./topprograssstart-->
+					</div>
+					<!--./col-md-3-->
+
+
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="topprograssstart">
+							<p class="text-uppercase mt5 clearfix"><i class="fa fa-ioxhost ftlayer"></i> Converted
+								Leads<span class="pull-right">0/0</span>
+							</p>
+							<div class="progress-group">
+								<div class="progress progress-minibar">
+									<div class="progress-bar progress-bar-red" style="width: 0%"></div>
+								</div>
+							</div>
+						</div>
+						<!--./topprograssstart-->
+					</div>
+					<!--./col-md-3-->
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="topprograssstart">
+							<p class="text-uppercase mt5 clearfix"><i class="fa fa-calendar-check-o ftlayer"></i>Staff
+								Present Today<span class="pull-right">0/5</span>
+							</p>
+							<div class="progress-group">
+								<div class="progress progress-minibar">
+									<div class="progress-bar progress-bar-green" style="width: 0%"></div>
+								</div>
+							</div>
+						</div>
+						<!--./topprograssstart-->
+					</div>
+					<!--./col-md-3-->
+
+
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="topprograssstart">
+							<p class="text-uppercase mt5 clearfix"><i class="fa fa-calendar-check-o ftlayer"></i>Student
+								Present Today<span class="pull-right"> 0/4</span>
+							</p>
+							<div class="progress-group">
+								<div class="progress progress-minibar">
+									<div class="progress-bar progress-bar-yellow" style="width: 0%"></div>
+								</div>
+							</div>
+						</div>
+						<!--./topprograssstart-->
+					</div>
+					<!--./col-md-3-->
+				</div>
+				<!--./row-->
+
+
+				<div class="row">
+					<div class="col-lg-7 col-md-7 col-sm-12 col60">
+
+						<div class="box box-primary borderwhite">
+							<div class="box-header with-border">
+								<h3 class="box-title">Fees Collection & Expenses For July 2022</h3>
+								<div class="box-tools pull-right">
+									<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+									<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+								</div>
+							</div>
+
+							<div class="box-body">
+								<div class="chart">
+									<canvas id="barChart" height="95"></canvas>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+					<!--./col-lg-7-->
+					<div class="col-lg-5 col-md-5 col-sm-12 col40">
+
+						<div class="box box-primary borderwhite">
+							<div class="box-header with-border">
+								<h3 class="box-title">Income - July 2022</h3>
+							</div>
+
+
+							<div class="box-body">
+								<div class="chart-responsive">
+									<canvas id="doughnut-chart" class="" height="148"></canvas>
+								</div>
+							</div>
+
+						</div>
+						<!--./col-md-6-->
+
+					</div>
+					<!--./col-lg-5-->
+				</div>
+				<!--./row-->
+
+				<div class="row">
+					<div class="col-lg-7 col-md-7 col-sm-12 col60">
+
+						<div class="box box-info borderwhite">
+							<div class="box-header with-border">
+								<h3 class="box-title">Fees Collection & Expenses For Session 2021-22</h3>
+								<div class="box-tools pull-right">
+									<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+									<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+								</div>
+							</div>
+							<div class="box-body">
+								<div class="chart">
+									<canvas id="lineChart" height="95"></canvas>
+								</div>
+							</div>
+
+							<!-- <div class="box-body">
+								<div class="chart">
+									<canvas id="lineChart"
+										style="height: 233px; width: 100%; white-space: nowrap;"></canvas>
+								</div>
+							</div> -->
+						</div>
+
+					</div>
+					<!--./col-lg-7-->
+					<div class="col-lg-5 col-md-5 col-sm-12 col40">
+						<div class="box box-primary borderwhite">
+							<div class="box-header with-border">
+								<h3 class="box-title">Expense - July 2022</h3>
+							</div>
+							<!--./info-box-->
+
+							<div class="box-body">
+								<div class="chart-responsive">
+									<canvas id="doughnut-chart1" class="" height="148"></canvas>
+								</div>
+							</div>
+							<!--  <div class="full-width-chart"><canvas id="doughnut-chart1" style="height: 340px; width: 100%; white-space: nowrap;"></canvas></div> -->
+
+						</div>
+					</div>
+					<!--./col-lg-5-->
+				</div>
+				<!--./row-->
+
+
+
+
+				<div class="row">
+
+
+					<div class="col-md-3 col-sm-6">
+
+						<div class="topprograssstart">
+							<h5 class="pro-border pb10">Fees Overview</h5>
+							<p class="text-uppercase mt10 clearfix">0 Unpaid<span class="pull-right">0%</span>
+							</p>
+							<div class="progress-group">
+								<div class="progress progress-minibar">
+									<div class="progress-bar" style="width: 0%"></div>
+								</div>
+							</div>
+
+							<p class="text-uppercase mt10 clearfix">0 Partial<span class="pull-right">0%</span>
+							</p>
+							<div class="progress-group">
+								<div class="progress progress-minibar">
+									<div class="progress-bar progress-bar-aqua" style="width: 0%"></div>
+								</div>
+							</div>
+
+							<p class="text-uppercase mt10 clearfix">0 Paid<span class="pull-right">0%</span>
+							</p>
+							<div class="progress-group">
+								<div class="progress progress-minibar">
+									<div class="progress-bar progress-bar-aqua" style="width: 0%"></div>
+								</div>
+							</div>
+						</div>
+						<!--./topprograssstart-->
+
+					</div>
+					<!--./col-md-3-->
+					<div class="col-md-3 col-sm-6">
+
+						<div class="topprograssstart">
+							<h5 class="pro-border pb10"> Enquiry Overview</h5>
+							<p class="text-uppercase mt10 clearfix">0 Active<span class="pull-right">0%</span>
+							</p>
+							<div class="progress-group">
+								<div class="progress progress-minibar">
+									<div class="progress-bar progress-bar-red" style="width: 0%"></div>
+								</div>
+							</div>
+
+							<p class="text-uppercase mt10 clearfix">0 Won<span class="pull-right">0%</span>
+							</p>
+							<div class="progress-group">
+								<div class="progress progress-minibar">
+									<div class="progress-bar progress-bar-yellow" style="width: 0%"></div>
+								</div>
+							</div>
+
+							<p class="text-uppercase mt10 clearfix">0 Passive<span class="pull-right">0%</span>
+							</p>
+							<div class="progress-group">
+								<div class="progress progress-minibar">
+									<div class="progress-bar progress-bar-yellow" style="width: 0%"></div>
+								</div>
+							</div>
+
+							<p class="text-uppercase mt10 clearfix">0 Lost<span class="pull-right">0%</span>
+							</p>
+							<div class="progress-group">
+								<div class="progress progress-minibar">
+									<div class="progress-bar progress-bar-yellow" style="width: 0%"></div>
+								</div>
+							</div>
+							<p class="text-uppercase mt10 clearfix">0 Dead<span class="pull-right">0%</span>
+							</p>
+							<div class="progress-group">
+								<div class="progress progress-minibar">
+									<div class="progress-bar progress-bar-yellow" style="width: 0%"></div>
+								</div>
+							</div>
+						</div>
+						<!--./topprograssstart-->
+
+					</div>
+					<!--./col-md-3-->
+
+
+
+					<div class="col-md-3 col-sm-6">
+
+						<div class="topprograssstart">
+							<h5 class="pro-border pb10"> Library Overview</h5>
+							<p class="text-uppercase mt10 clearfix">0 Due For Return<span class="pull-right"></span>
+							</p>
+							<div class="progress-group">
+								<div class="progress progress-minibar">
+									<div class="progress-bar progress-bar-green" style="width: 0%"></div>
+								</div>
+							</div>
+
+							<p class="text-uppercase mt10 clearfix">0 Returned<span class="pull-right"></span>
+							</p>
+							<div class="progress-group">
+								<div class="progress progress-minibar">
+									<div class="progress-bar progress-bar-green" style="width: 0%"></div>
+								</div>
+							</div>
+
+							<p class="text-uppercase mt10 clearfix"> Issued out of <span class="pull-right">0%</span>
+							</p>
+							<div class="progress-group">
+								<div class="progress progress-minibar">
+									<div class="progress-bar progress-bar-green" style="width: 0%"></div>
+								</div>
+							</div>
+
+							<p class="text-uppercase mt10 clearfix">0 Available out of <span class="pull-right">0%</span>
+							</p>
+							<div class="progress-group">
+								<div class="progress progress-minibar">
+									<div class="progress-bar progress-bar-green" style="width: 0%"></div>
+								</div>
+							</div>
+						</div>
+						<!--./topprograssstart-->
+
+					</div>
+					<!--./col-md-3-->
+
+
+					<div class="col-md-3 col-sm-6">
+
+						<div class="topprograssstart">
+							<h5 class="pro-border pb10"> Student Today Attendance</h5>
+
+							<p class="text-uppercase mt10 clearfix"> Present<span class="pull-right"></span>
+							</p>
+							<div class="progress-group">
+								<div class="progress progress-minibar">
+									<div class="progress-bar"></div>
+								</div>
+							</div>
+
+							<p class="text-uppercase mt10 clearfix"> Late<span class="pull-right"></span>
+							</p>
+							<div class="progress-group">
+								<div class="progress progress-minibar">
+									<div class="progress-bar"></div>
+								</div>
+							</div>
+							<p class="text-uppercase mt10 clearfix"> Absent<span class="pull-right"></span>
+							</p>
+							<div class="progress-group">
+								<div class="progress progress-minibar">
+									<div class="progress-bar"></div>
+								</div>
+							</div>
+							<p class="text-uppercase mt10 clearfix"> Half Day<span class="pull-right"></span>
+							</p>
+							<div class="progress-group">
+								<div class="progress progress-minibar">
+									<div class="progress-bar"></div>
+								</div>
+							</div>
+						</div>
+						<!--./topprograssstart-->
+
+					</div>
+					<!--./col-md-3-->
+
+
+					<div class="row">
+
+						<div class="col-lg-9 col-md-9 col-sm-12 col80">
+							<div class="row">
+								<div class="col-md-4 col-sm-6">
+									<div class="info-box">
+										<a href="studentfee">
+											<span class="info-box-icon bg-green"><i class="fa fa-money"></i></span>
+											<div class="info-box-content">
+												<span class="info-box-text">Monthly Fees Collection</span>
+												<span class="info-box-number">$0</span>
+											</div>
+										</a>
+									</div>
+								</div>
+
+								<div class="col-md-4 col-sm-6">
+									<div class="info-box">
+										<a href="admin/expense">
+											<span class="info-box-icon bg-red"><i class="fa fa-credit-card"></i></span>
+											<div class="info-box-content">
+												<span class="info-box-text">Monthly Expenses</span>
+												<span class="info-box-number">$0</span>
+											</div>
+										</a>
+									</div>
+								</div>
+
+
+								<div class="col-md-4 col-sm-6">
+									<div class="info-box">
+										<a href="student/search">
+											<span class="info-box-icon bg-aqua"><i class="fa fa-user"></i></span>
+											<div class="info-box-content">
+												<span class="info-box-text">Student</span>
+												<span class="info-box-number">4</span>
+											</div>
+										</a>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="box box-primary borderwhite">
+								<div class="box-body">
+									<!-- THE CALENDAR -->
+									<div id="calendar"></div>
+								</div>
+								<!-- /.box-body -->
+							</div>
+							<!-- /. box -->
+
+						</div>
+						<!--./col-lg-9-->
+
+						<div class="col-lg-3 col-md-3 col-sm-12 col20">
+
+							<div class="info-box">
+								<a href="#">
+									<span class="info-box-icon bg-yellow"><i class="fa fa-user-secret"></i></span>
+									<div class="info-box-content">
+										<span class="info-box-text">Admin</span>
+										<span class="info-box-number">2</span>
+									</div>
+								</a>
+							</div>
+							<div class="info-box">
+								<a href="#">
+									<span class="info-box-icon bg-yellow"><i class="fa fa-user-secret"></i></span>
+									<div class="info-box-content">
+										<span class="info-box-text">Teacher</span>
+										<span class="info-box-number">2</span>
+									</div>
+								</a>
+							</div>
+							<div class="info-box">
+								<a href="#">
+									<span class="info-box-icon bg-yellow"><i class="fa fa-user-secret"></i></span>
+									<div class="info-box-content">
+										<span class="info-box-text">Accountant</span>
+										<span class="info-box-number">0</span>
+									</div>
+								</a>
+							</div>
+							<div class="info-box">
+								<a href="#">
+									<span class="info-box-icon bg-yellow"><i class="fa fa-user-secret"></i></span>
+									<div class="info-box-content">
+										<span class="info-box-text">Librarian</span>
+										<span class="info-box-number">0</span>
+									</div>
+								</a>
+							</div>
+							<div class="info-box">
+								<a href="#">
+									<span class="info-box-icon bg-yellow"><i class="fa fa-user-secret"></i></span>
+									<div class="info-box-content">
+										<span class="info-box-text">Receptionist</span>
+										<span class="info-box-number">0</span>
+									</div>
+								</a>
+							</div>
+							<div class="info-box">
+								<a href="#">
+									<span class="info-box-icon bg-yellow"><i class="fa fa-user-secret"></i></span>
+									<div class="info-box-content">
+										<span class="info-box-text">Super Admin</span>
+										<span class="info-box-number">1</span>
+									</div>
+								</a>
+							</div>
+
+
+
+						</div>
+						<!--./col-lg-3-->
+					</div>
+					<!--./row-->
+
+
+
+
+
+
+
+
+				</div>
+				<!--./row-->
+
+
+		</div>
+		<div id="newEventModal" class="modal fade " role="dialog">
+			<div class="modal-dialog modal-dialog2 modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Add New Event</h4>
+					</div>
+					<div class="modal-body">
+
+						<div class="row">
+							<form role="form" id="addevent_form" method="post" enctype="multipart/form-data" action="">
+								<div class="form-group col-md-12">
+									<label for="exampleInputEmail1">Event Title </label><small class="req"> *</small>
+									<input class="form-control" name="title" id="input-field">
+									<span class="text-danger"></span>
+
+								</div>
+
+								<div class="form-group col-md-12">
+									<label for="exampleInputEmail1">Description</label>
+									<textarea name="description" class="form-control" id="desc-field"></textarea>
+								</div>
+								<div class="row">
+
+									<div class="form-group col-md-6">
+										<label for="exampleInputEmail1">Event From</label>
+										<div class="input-group">
+											<div class="input-group-addon">
+												<i class="fa fa-calendar"></i>
+											</div>
+											<input type="text" autocomplete="off" name="event_from"
+												class="form-control pull-right event_from">
+										</div>
+									</div>
+
+									<div class="form-group col-md-6">
+										<label for="exampleInputEmail1">Event To</label>
+										<div class="input-group">
+											<div class="input-group-addon">
+												<i class="fa fa-calendar"></i>
+											</div>
+											<input type="text" autocomplete="off" name="event_to" class="form-control pull-right event_to">
+										</div>
+									</div>
+								</div>
+								<div class="form-group col-md-12">
+									<label for="exampleInputEmail1">Event Color</label>
+									<input type="hidden" name="eventcolor" autocomplete="off" id="eventcolor" class="form-control">
+								</div>
+								<div class="form-group col-md-12">
+
+									<div class="cpicker-wrapper">
+										<div class='calendar-cpicker cpicker cpicker-big' data-color='#03a9f4'
+											style='background:#03a9f4;border:1px solid #03a9f4; border-radius:100px'>
+										</div>
+										<div class='calendar-cpicker cpicker cpicker-small' data-color='#c53da9'
+											style='background:#c53da9;border:1px solid #c53da9; border-radius:100px'>
+										</div>
+										<div class='calendar-cpicker cpicker cpicker-small' data-color='#757575'
+											style='background:#757575;border:1px solid #757575; border-radius:100px'>
+										</div>
+										<div class='calendar-cpicker cpicker cpicker-small' data-color='#8e24aa'
+											style='background:#8e24aa;border:1px solid #8e24aa; border-radius:100px'>
+										</div>
+										<div class='calendar-cpicker cpicker cpicker-small' data-color='#d81b60'
+											style='background:#d81b60;border:1px solid #d81b60; border-radius:100px'>
+										</div>
+										<div class='calendar-cpicker cpicker cpicker-small' data-color='#7cb342'
+											style='background:#7cb342;border:1px solid #7cb342; border-radius:100px'>
+										</div>
+										<div class='calendar-cpicker cpicker cpicker-small' data-color='#fb8c00'
+											style='background:#fb8c00;border:1px solid #fb8c00; border-radius:100px'>
+										</div>
+										<div class='calendar-cpicker cpicker cpicker-small' data-color='#fb3b3b'
+											style='background:#fb3b3b;border:1px solid #fb3b3b; border-radius:100px'>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group col-md-12">
+									<label for="exampleInputEmail1">Event Type</label>
+									<br />
+									<label class="radio-inline">
+
+										<input type="radio" name="event_type" value="public" id="public">Public </label>
+									<label class="radio-inline">
+
+										<input type="radio" name="event_type" value="private" checked id="private">Private </label>
+									<label class="radio-inline">
+
+										<input type="radio" name="event_type" value="sameforall" id="public">All Super
+										Admin </label>
+									<label class="radio-inline">
+
+										<input type="radio" name="event_type" value="protected" id="public">Protected
+									</label>
+								</div>
+
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<input type="submit" class="btn btn-primary submit_addevent pull-right" value="Save">
+								</div>
+							</form>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="viewEventModal" class="modal fade " role="dialog">
+			<div class="modal-dialog modal-dialog2 modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Edit Event</h4>
+					</div>
+					<div class="modal-body">
+
+						<div class="row">
+							<form role="form" method="post" id="updateevent_form" enctype="multipart/form-data" action="">
+								<div class="form-group col-md-12">
+									<label for="exampleInputEmail1">EventTitle </label>
+									<input class="form-control" name="title" placeholder="" id="event_title">
+								</div>
+								<div class="form-group col-md-12">
+									<label for="exampleInputEmail1">Description</label>
+									<textarea name="description" class="form-control" placeholder="" id="event_desc"></textarea>
+								</div>
+								<div class="row">
+
+									<div class="form-group col-md-6">
+										<label for="exampleInputEmail1">Event From</label>
+										<div class="input-group">
+											<div class="input-group-addon">
+												<i class="fa fa-calendar"></i>
+											</div>
+											<input type="text" autocomplete="off" name="event_from"
+												class="form-control pull-right event_from">
+										</div>
+									</div>
+
+									<div class="form-group col-md-6">
+										<label for="exampleInputEmail1">Event To</label>
+										<div class="input-group">
+											<div class="input-group-addon">
+												<i class="fa fa-calendar"></i>
+											</div>
+											<input type="text" autocomplete="off" name="event_to" class="form-control pull-right event_to">
+										</div>
+									</div>
+								</div>
+								<input type="hidden" name="eventid" id="eventid">
+								<div class="form-group col-md-12">
+									<label for="exampleInputEmail1">EventColor</label>
+									<input type="hidden" name="eventcolor" autocomplete="off" placeholder="Event Color" id="event_color"
+										class="form-control">
+								</div>
+								<div class="form-group col-md-12">
+
+									<div class="cpicker-wrapper selectevent">
+										<div id=03a9f4 class='calendar-cpicker cpicker cpicker-big' data-color='#03a9f4'
+											style='background:#03a9f4;border:1px solid #03a9f4; border-radius:100px'>
+										</div>
+										<div id=c53da9 class='calendar-cpicker cpicker cpicker-small' data-color='#c53da9'
+											style='background:#c53da9;border:1px solid #c53da9; border-radius:100px'>
+										</div>
+										<div id=757575 class='calendar-cpicker cpicker cpicker-small' data-color='#757575'
+											style='background:#757575;border:1px solid #757575; border-radius:100px'>
+										</div>
+										<div id=8e24aa class='calendar-cpicker cpicker cpicker-small' data-color='#8e24aa'
+											style='background:#8e24aa;border:1px solid #8e24aa; border-radius:100px'>
+										</div>
+										<div id=d81b60 class='calendar-cpicker cpicker cpicker-small' data-color='#d81b60'
+											style='background:#d81b60;border:1px solid #d81b60; border-radius:100px'>
+										</div>
+										<div id=7cb342 class='calendar-cpicker cpicker cpicker-small' data-color='#7cb342'
+											style='background:#7cb342;border:1px solid #7cb342; border-radius:100px'>
+										</div>
+										<div id=fb8c00 class='calendar-cpicker cpicker cpicker-small' data-color='#fb8c00'
+											style='background:#fb8c00;border:1px solid #fb8c00; border-radius:100px'>
+										</div>
+										<div id=fb3b3b class='calendar-cpicker cpicker cpicker-small' data-color='#fb3b3b'
+											style='background:#fb3b3b;border:1px solid #fb3b3b; border-radius:100px'>
+										</div>
+									</div>
+								</div>
+								<div class="form-group col-md-12">
+									<label for="exampleInputEmail1">EventType</label>
+									<label class="radio-inline">
+
+										<input type="radio" name="eventtype" value="public" id="public">Public </label>
+									<label class="radio-inline">
+
+										<input type="radio" name="eventtype" value="private" id="private">Private
+									</label>
+									<label class="radio-inline">
+
+										<input type="radio" name="eventtype" value="sameforall" id="public">All Super
+										Admin </label>
+									<label class="radio-inline">
+
+										<input type="radio" name="eventtype" value="protected" id="public">Protected
+									</label>
+								</div>
+
+								<div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+
+									<input type="submit" class="btn btn-primary submit_update pull-right" value="Save">
+								</div>
+								<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+									<input type="button" id="delete_event" class="btn btn-primary submit_delete pull-right"
+										value="Delete">
+								</div>
+							</form>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<style>
+			canvas {
+				user-select: none;
+				-moz-user-select: none;
+				-webkit-user-select: none;
+				-ms-user-select: none;
+			}
+
+		</style>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+		<!-- <script src="backend/js/Chart.min.js"></script>
+<script src="backend/js/utils.js"></script> -->
+		<script type="text/javascript">
+			new Chart(document.getElementById("doughnut-chart"), {
+				type: 'doughnut',
+				data: {
+					labels: [],
+					datasets: [
+						{
+							label: "Income",
+							backgroundColor: [],
+							data: []
+						}
+					]
+				},
+				options: {
+					responsive: true,
+					circumference: Math.PI,
+					rotation: - Math.PI,
+					legend: {
+						position: 'top',
+					},
+					title: {
+						display: true,
+					},
+					animation: {
+						animateScale: true,
+						animateRotate: true
+					}
+				}
+			});
+			new Chart(document.getElementById("doughnut-chart1"), {
+				type: 'doughnut',
+				data: {
+					labels: [],
+					datasets: [
+						{
+							label: "Population (millions)",
+							backgroundColor: [],
+							data: []
+						}
+					]
+				},
+				options: {
+					responsive: true,
+					circumference: Math.PI,
+					rotation: - Math.PI,
+					legend: {
+						position: 'top',
+					},
+					title: {
+						display: true,
+					},
+					animation: {
+						animateScale: true,
+						animateRotate: true
+					}
+				}
+			});
+			$(function () {
+				var areaChartOptions = {
+					showScale: true,
+					scaleShowGridLines: false,
+					scaleGridLineColor: "rgba(0,0,0,.05)",
+					scaleGridLineWidth: 1,
+					scaleShowHorizontalLines: true,
+					scaleShowVerticalLines: true,
+					bezierCurve: true,
+					bezierCurveTension: 0.3,
+					pointDot: false,
+					pointDotRadius: 4,
+					pointDotStrokeWidth: 1,
+					pointHitDetectionRadius: 20,
+					datasetStroke: true,
+					datasetStrokeWidth: 2,
+					datasetFill: true,
+					maintainAspectRatio: true,
+					responsive: true
+				};
+				var bar_chart = "1";
+				var line_chart = "1";
+				if (line_chart) {
+
+
+					var lineChartCanvas = $("#lineChart").get(0).getContext("2d");
+					var lineChart = new Chart(lineChartCanvas);
+					var lineChartOptions = areaChartOptions;
+					lineChartOptions.datasetFill = false;
+					var yearly_collection_array = ["0.00", "0.00", "0.00", "0.00", "0.00", "0.00", "0.00", "0.00", "0.00", "0.00", 250, "0.00"];
+					var yearly_expense_array = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+					var total_month = ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar"];
+					var areaChartData_expense_Income = {
+						labels: total_month,
+						datasets: [
+							{
+								label: "Expense",
+								fillColor: "rgba(215, 44, 44, 0.7)",
+								strokeColor: "rgba(215, 44, 44, 0.7)",
+								pointColor: "rgba(233, 30, 99, 0.9)",
+								pointStrokeColor: "#c1c7d1",
+								pointHighlightFill: "#fff",
+								pointHighlightStroke: "rgba(220,220,220,1)",
+								data: yearly_expense_array
+							},
+							{
+								label: "Collection",
+								fillColor: "rgba(102, 170, 24, 0.6)",
+								strokeColor: "rgba(102, 170, 24, 0.6)",
+								pointColor: "rgba(102, 170, 24, 0.9)",
+								pointStrokeColor: "rgba(102, 170, 24, 0.6)",
+								pointHighlightFill: "#fff",
+								pointHighlightStroke: "rgba(60,141,188,1)",
+								data: yearly_collection_array
+							}
+						]
+					};
+					lineChart.Line(areaChartData_expense_Income, lineChartOptions);
+				}
+
+				var current_month_days = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"];
+				var days_collection = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+				var days_expense = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+				var areaChartData_classAttendence = {
+					labels: current_month_days,
+					datasets: [
+						{
+							label: "Electronics",
+							fillColor: "rgba(102, 170, 24, 0.6)",
+							strokeColor: "rgba(102, 170, 24, 0.6)",
+							pointColor: "rgba(102, 170, 24, 0.6)",
+							pointStrokeColor: "#c1c7d1",
+							pointHighlightFill: "#fff",
+							pointHighlightStroke: "rgba(220,220,220,1)",
+							data: days_collection
+						},
+						{
+							label: "Digital Goods",
+							fillColor: "rgba(233, 30, 99, 0.9)",
+							strokeColor: "rgba(233, 30, 99, 0.9)",
+							pointColor: "rgba(233, 30, 99, 0.9)",
+							pointStrokeColor: "rgba(233, 30, 99, 0.9)",
+							pointHighlightFill: "rgba(233, 30, 99, 0.9)",
+							pointHighlightStroke: "rgba(60,141,188,1)",
+							data: days_expense
+						}
+					]
+				};
+				if (bar_chart) {
+					var current_month_days = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"];
+					var days_collection = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+					var days_expense = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+					var areaChartData_classAttendence = {
+						labels: current_month_days,
+						datasets: [
+							{
+								label: "Electronics",
+								fillColor: "rgba(102, 170, 24, 0.6)",
+								strokeColor: "rgba(102, 170, 24, 0.6)",
+								pointColor: "rgba(102, 170, 24, 0.6)",
+								pointStrokeColor: "#c1c7d1",
+								pointHighlightFill: "#fff",
+								pointHighlightStroke: "rgba(220,220,220,1)",
+								data: days_collection
+							},
+							{
+								label: "Digital Goods",
+								fillColor: "rgba(233, 30, 99, 0.9)",
+								strokeColor: "rgba(233, 30, 99, 0.9)",
+								pointColor: "rgba(233, 30, 99, 0.9)",
+								pointStrokeColor: "rgba(233, 30, 99, 0.9)",
+								pointHighlightFill: "rgba(233, 30, 99, 0.9)",
+								pointHighlightStroke: "rgba(60,141,188,1)",
+								data: days_expense
+							}
+						]
+					};
+					var barChartCanvas = $("#barChart").get(0).getContext("2d");
+					var barChart = new Chart(barChartCanvas);
+					var barChartData = areaChartData_classAttendence;
+					barChartData.datasets[1].fillColor = "rgba(233, 30, 99, 0.9)";
+					barChartData.datasets[1].strokeColor = "rgba(233, 30, 99, 0.9)";
+					barChartData.datasets[1].pointColor = "rgba(233, 30, 99, 0.9)";
+					var barChartOptions = {
+						scaleBeginAtZero: true,
+						scaleShowGridLines: true,
+						scaleGridLineColor: "rgba(0,0,0,.05)",
+						scaleGridLineWidth: 1,
+						scaleShowHorizontalLines: false,
+						scaleShowVerticalLines: false,
+						barShowStroke: true,
+						barStrokeWidth: 2,
+						barValueSpacing: 5,
+						barDatasetSpacing: 1,
+						responsive: true,
+						maintainAspectRatio: true
+					};
+					barChartOptions.datasetFill = false;
+					barChart.Bar(barChartData, barChartOptions);
+				}
+			});
+
+
+			$(document).ready(function () {
+				$(document).on('click', '.close_notice', function () {
+					var data = $(this).data();
+					$.ajax({
+						type: "POST",
+						url: base_url + "admin/notification/read",
+						data: { 'notice': data.noticeid },
+						dataType: "json",
+						success: function (data) {
+							if (data.status == "fail") {
+
+								errorMsg(data.msg);
+							} else {
+								successMsg(data.msg);
+							}
+						}
+					});
+				});
+			});
+		</script>
+		<footer class="main-footer">
+			&copy; 2022 Online School</footer>
+		<div class="control-sidebar-bg"></div>
+	</div>
+	<script>
+		$.widget.bridge('uibutton', $.ui.button);
+	</script>
+	<link href="backend/toast-alert/toastr.css" rel="stylesheet" />
+	<script src="backend/toast-alert/toastr.js"></script>
+	<script src="backend/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="backend/plugins/select2/select2.min.css">
+	<script src="backend/plugins/select2/select2.full.min.js"></script>
+	<script src="backend/plugins/input-mask/jquery.inputmask.js"></script>
+	<script src="backend/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+	<script src="backend/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+	<script src="backend/dist/js/moment.min.js"></script>
+	<script src="backend/plugins/daterangepicker/daterangepicker.js"></script>
+	<script src="backend/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+	<script src="backend/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+	<script src="backend/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+	<script src="backend/dist/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script type="text/javascript">
+		$('body').tooltip({
+			selector: '[data-toggle]',
+			trigger: 'click hover',
+			placement: 'top',
+			delay: {
+				show: 50,
+				hide: 400
+			}
+		})
+	</script>
+	<!--language js-->
+	<script type="text/javascript" src="backend/dist/js/bootstrap-select.min.js"></script>
+
+	<script type="text/javascript">
+		$(function () {
+			$('.languageselectpicker').selectpicker();
+		});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$(".studentsidebar").mCustomScrollbar({
+				theme: "minimal"
+			});
+
+			$('.studentsideclose, .overlay').on('click', function () {
+				$('.studentsidebar').removeClass('active');
+				$('.overlay').fadeOut();
+			});
+
+			$('#sidebarCollapse').on('click', function () {
+				$('.studentsidebar').addClass('active');
+				$('.overlay').fadeIn();
+				$('.collapse.in').toggleClass('in');
+				$('a[aria-expanded=true]').attr('aria-expanded', 'false');
+			});
+		});
+	</script>
+
+
+	<script src="backend/plugins/iCheck/icheck.min.js"></script>
+	<script src="backend/plugins/datepicker/bootstrap-datepicker.js"></script>
+	<script src="backend/datepicker/js/bootstrap-datetimepicker.js"></script>
+
+	<script src="backend/plugins/chartjs/Chart.min.js"></script>
+	<script src="backend/plugins/fastclick/fastclick.min.js"></script>
+	<script src="backend/dist/js/app.min.js"></script>
+	<!--nprogress-->
+	<script src="backend/dist/js/nprogress.js"></script>
+	<!--file dropify-->
+	<script src="backend/dist/js/dropify.min.js"></script>
+	<script type="text/javascript" src="backend/dist/datatables/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="backend/dist/datatables/js/dataTables.buttons.min.js"></script>
+	<script type="text/javascript" src="backend/dist/datatables/js/jszip.min.js"></script>
+	<script type="text/javascript" src="backend/dist/datatables/js/pdfmake.min.js"></script>
+	<script type="text/javascript" src="backend/dist/datatables/js/vfs_fonts.js"></script>
+	<script type="text/javascript" src="backend/dist/datatables/js/buttons.html5.min.js"></script>
+	<script type="text/javascript" src="backend/dist/datatables/js/buttons.print.min.js"></script>
+	<script type="text/javascript" src="backend/dist/datatables/js/buttons.colVis.min.js"></script>
+	<script type="text/javascript" src="backend/dist/datatables/js/dataTables.responsive.min.js"></script>
+	<script type="text/javascript" src="backend/dist/datatables/js/ss.custom.js"></script>
+	<!-- <script src="backend/dist/datatables/js/datetime-moment.js"></script>
+-->
+</body>
+
+</html>
+<!-- jQuery 3 -->
+<!--script src="backend/dist/js/pages/dashboard2.js"></script-->
+<script src="backend/fullcalendar/dist/fullcalendar.min.js"></script>
+<script src="backend/fullcalendar/dist/locale-all.js"></script>
+<script type="text/javascript">
+
+	$(document).ready(function () {
+
+	});
+
+
+	function complete_event(id, status) {
+		$.ajax({
+			url: "admin/calendar/markcomplete/" + id,
+			type: "POST",
+			data: { id: id, active: status },
+			dataType: 'json',
+
+			success: function (res) {
+
+				if (res.status == "fail") {
+					var message = "";
+					$.each(res.error, function (index, value) {
+
+						message += value;
+					});
+					errorMsg(message);
+
+				} else {
+					successMsg(res.message);
+					window.location.reload(true);
+				}
+			}
+		});
+	}
+
+	function markc(id) {
+		$('#newcheck' + id).change(function () {
+			if (this.checked) {
+				complete_event(id, 'yes');
+			} else {
+				complete_event(id, 'no');
+			}
+		});
+	}
+
+</script>
+
+
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="row">
+	<div class="modal fade" id="sessionModal" tabindex="-1" role="dialog" aria-labelledby="sessionModalLabel">
+		<form action="admin/admin/activeSession" id="form_modal_session" class="">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+								aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="sessionModalLabel">Session</h4>
+					</div>
+					<div class="modal-body sessionmodal_body pb0">
+					</div>
+					<div class="modal-footer">
+						<div class="col-md-12">
+							<button type="button" class="btn btn-primary submit_session"
+								data-loading-text="<i class='fa fa-spinner fa-spin '></i> Please wait">Save</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+
+1
+<script type="text/javascript">
+	var calendar_date_time_format = 'DD.MM.YYYY';
+
+	var datetime_format = 'DD.MM.YYYY';
+
+	var date_format = 'dd.mm.yyyy';
+
+
+	function savedata(eventData) {
+		var base_url = '';
+		$.ajax({
+			url: base_url + 'admin/calendar/saveevent',
+			type: 'POST',
+			data: eventData,
+			dataType: "json",
+			success: function (msg) {
+				alert(msg);
+
+			}
+		});
+	}
+
+	$calendar = $('#calendar');
+	var base_url = '';
+	today = new Date();
+	y = today.getFullYear();
+	m = today.getMonth();
+	d = today.getDate();
+	var viewtitle = 'month';
+	var pagetitle = "Dashboard";
+
+	if (pagetitle == "Dashboard") {
+
+		viewtitle = 'agendaWeek';
+	}
+
+	$calendar.fullCalendar({
+		viewRender: function (view, element) {
+
+		},
+
+		header: {
+			center: 'title',
+			right: 'month,agendaWeek,agendaDay',
+			left: 'prev,next,today'
+		},
+		firstDay: start_week,
+		defaultDate: today,
+		defaultView: viewtitle,
+		selectable: true,
+		selectHelper: true,
+		views: {
+			month: {// name of view
+				titleFormat: 'MMMM YYYY'
+				// other view-specific options here
+			},
+			week: {
+				titleFormat: " MMMM D YYYY"
+			},
+			day: {
+				titleFormat: 'D MMM, YYYY'
+			}
+		},
+		timezone: 'UTC',
+		draggable: false,
+		lang: 'en',
+		editable: false,
+		eventLimit: false, // allow "more" link when too many events
+
+		// color classes: [ event-blue | event-azure | event-green | event-orange | event-red ]
+		events: {
+			url: base_url + 'admin/calendar/getevents'
+
+		},
+
+		eventRender: function (event, element) {
+			element.attr('title', event.title);
+			element.attr('onclick', event.onclick);
+			element.attr('data-toggle', 'tooltip');
+			if ((!event.url) && (event.event_type != 'task')) {
+				element.attr('title', event.title + '-' + event.description);
+				element.click(function () {
+					view_event(event.id);
+				});
+			}
+		},
+		dayClick: function (date, jsEvent, view) {
+			console.log('Clicked on the entire day: ' + date.format());
+
+
+			var newEventModal = $('#newEventModal');
+			$("#input-field").val('');
+			$("#desc-field").text('');
+			var event_start_from = new Date(date);
+			console.log(event_start_from);
+			$('.event_from', newEventModal).data("DateTimePicker").date(event_start_from);
+			$('.event_to', newEventModal).data("DateTimePicker").date(event_start_from);
+			$('#newEventModal').modal('show');
+
+			return false;
+		}
+
+	});
+
+	function view_event(id) {
+
+		$('.selectevent').find('.cpicker-big').removeClass('cpicker-big').addClass('cpicker-small');
+		var base_url = '';
+		if (typeof (id) == 'undefined') {
+			return;
+		}
+		$.ajax({
+			url: base_url + 'admin/calendar/view_event/' + id,
+			type: 'POST',
+			//data: '',
+			dataType: "json",
+			success: function (msg) {
+
+
+				$("#event_title").val(msg.event_title);
+				$("#event_desc").text(msg.event_description);
+
+				$('#eventid').val(id);
+				if (msg.event_type == 'public') {
+
+					$('input:radio[name=eventtype]')[0].checked = true;
+
+				} else if (msg.event_type == 'private') {
+					$('input:radio[name=eventtype]')[1].checked = true;
+
+				} else if (msg.event_type == 'sameforall') {
+					$('input:radio[name=eventtype]')[2].checked = true;
+
+				} else if (msg.event_type == 'protected') {
+					$('input:radio[name=eventtype]')[3].checked = true;
+
+				}
+				//===========
+
+				var __viewModal = $('#viewEventModal');
+				var event_start_from = new Date(msg.start_date);
+				$('.event_from', __viewModal).data("DateTimePicker").date(event_start_from);
+
+				var event_end_to = new Date(msg.end_date);
+				$('.event_to', __viewModal).data("DateTimePicker").date(event_end_to);
+				//============
+
+				$("#event_color").val(msg.event_color);
+				$("#delete_event").attr("onclick", "deleteevent(" + id + ",'Event')");
+				$("#" + msg.colorid).removeClass('cpicker-small').addClass('cpicker-big');
+				$('#viewEventModal').modal('show');
+			}
+		});
+	}
+
+	$(document).ready(function (e) {
+		$("#addevent_form").on('submit', (function (e) {
+
+			e.preventDefault();
+			$.ajax({
+				url: "admin/calendar/saveevent",
+				type: "POST",
+				data: new FormData(this),
+				dataType: 'json',
+				contentType: false,
+				cache: false,
+				processData: false,
+				success: function (res) {
+
+					if (res.status == "fail") {
+
+						var message = "";
+						$.each(res.error, function (index, value) {
+
+							message += value;
+						});
+						errorMsg(message);
+
+					} else {
+						successMsg(res.message);
+						window.location.reload(true);
+					}
+				}
+			});
+		}));
+
+
+	});
+
+
+	$(document).ready(function (e) {
+		$("#updateevent_form").on('submit', (function (e) {
+
+			e.preventDefault();
+			$.ajax({
+				url: "admin/calendar/updateevent",
+				type: "POST",
+				data: new FormData(this),
+				dataType: 'json',
+				contentType: false,
+				cache: false,
+				processData: false,
+				success: function (res) {
+
+					if (res.status == "fail") {
+
+						var message = "";
+						$.each(res.error, function (index, value) {
+
+							message += value;
+						});
+						errorMsg(message);
+
+					} else {
+
+						successMsg(res.message);
+						window.location.reload(true);
+					}
+				}
+			});
+		}));
+
+	});
+
+	function deleteevent(id, msg) {
+		if (typeof (id) == 'undefined') {
+			return;
+		}
+		if (confirm("Are you sure to delete this ")) {
+			$.ajax({
+				url: base_url + 'admin/calendar/delete_event/' + id,
+				type: 'POST',
+				dataType: "json",
+				success: function (res) {
+					if (res.status == "fail") {
+						errorMsg(res.message);
+					} else {
+						successMsg(msg + " Record Delete Successfully");
+						window.location.reload(true);
+					}
+				}
+			})
+		}
+	}
+
+	$("body").on('click', '.cpicker', function () {
+		var color = $(this).data('color');
+		// Clicked on the same selected color
+		if ($(this).hasClass('cpicker-big')) {
+			return false;
+		}
+
+		$(this).parents('.cpicker-wrapper').find('.cpicker-big').removeClass('cpicker-big').addClass('cpicker-small');
+		$(this).removeClass('cpicker-small', 'fast').addClass('cpicker-big', 'fast');
+		if ($(this).hasClass('kanban-cpicker')) {
+			$(this).parents('.panel-heading-bg').css('background', color);
+			$(this).parents('.panel-heading-bg').css('border', '1px solid ' + color);
+		} else if ($(this).hasClass('calendar-cpicker')) {
+			$("body").find('input[name="eventcolor"]').val(color);
+		}
+	});
+
+	$(document).ready(function () {
+		moment.lang('en', {
+			week: { dow: start_week }
+		});
+
+		$("body").delegate(".date", "focusin", function () {
+			$(this).datepicker({
+				todayHighlight: false,
+				format: date_format,
+				autoclose: true,
+				weekStart: start_week,
+				language: 'en'
+			});
+		});
+
+		$("body").delegate(".datetime", "focusin", function () {
+			$(this).datetimepicker({
+				format: calendar_date_time_format + ' hh:mm a',
+				locale: 'en',
+
+			});
+		});
+
+		$('body').on('focus', ".date_fee", function () {
+			$(this).datepicker({
+				format: date_format,
+				autoclose: true,
+				language: 'en',
+				endDate: '+0d',
+				weekStart: start_week,
+				todayHighlight: true
+			});
+		});
+
+		$('.datetime_twelve_hour').datetimepicker({
+			format: calendar_date_time_format + ' hh:mm a'
+		});
+
+
+		$("#event_date").daterangepicker({
+			timePickerIncrement: 5,
+			locale: {
+				format: calendar_date_time_format
+			}
+		});
+
+
+		///================
+
+		$('.event_from').datetimepicker({
+			format: calendar_date_time_format + ' hh:mm a'
+		});
+
+		$('.event_to').datetimepicker({
+			format: calendar_date_time_format + ' hh:mm a'
+		});
+		//==============
+
+
+	});
+
+	function loadDate() {
+
+		var date_format = 'dd.mm.yyyy';
+
+		$('.date').datetimepicker({
+			format: datetime_format,
+			locale:
+				'en',
+
+		});
+	}
+
+	// showdate('this_year');
+
+	function showdate(type) {
+
+		var date_from = '22.07.2022';
+		var date_to = '22.07.2022';
+
+		if (type == 'period') {
+
+			$.ajax({
+				url: base_url + 'Report/get_betweendate/' + type,
+				type: 'POST',
+				data: { date_from: date_from, date_to: date_to },
+				success: function (res) {
+
+					$('#date_result').html(res);
+
+					loadDate();
+				}
+
+			});
+
+		} else {
+			$('#date_result').html('');
+		}
+
+	}
+</script>
